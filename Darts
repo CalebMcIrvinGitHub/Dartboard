@@ -1,0 +1,81 @@
+import fileinput
+
+ll = []
+
+def maximum(a, b, c): 
+  
+    if (a >= b) and (a >= c): 
+        largest = a 
+  
+    elif (b >= a) and (b >= c): 
+        largest = b 
+    else: 
+        largest = c 
+          
+    return largest 
+
+for line in fileinput.input():
+    ll.append(line.strip())
+    if len(ll) == int(ll[0]) + 1:
+        break
+
+dart_list = [20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5]
+
+
+
+for i in range(1, len(ll)):
+    ll[i] = ll[i].split()
+
+
+for i in range(1, len(ll)):
+    sum_1 = 0
+    sum_2 = 0
+    sum_3 = 0
+
+
+    if dart_list.index(int(ll[i][0])) == dart_list.index(int(ll[i][1])):
+        sum_1 = int(ll[i][0])
+    
+    elif dart_list.index(int(ll[i][0])) < dart_list.index(int(ll[i][1])):
+        
+        for x in range(dart_list.index(int(ll[i][0])), dart_list.index(int(ll[i][1])) + 1):
+            sum_1 += dart_list[x]
+
+    else:
+        
+        for x in range(dart_list.index(int(ll[i][0])), 20):
+            sum_1 += dart_list[x]
+        for x in range(0, dart_list.index(int(ll[i][1])) + 1):
+            sum_1 += dart_list[x]
+
+    if dart_list.index(int(ll[i][1])) == dart_list.index(int(ll[i][2])):
+        sum_2 = int(ll[i][1])
+    
+    elif dart_list.index(int(ll[i][1])) < dart_list.index(int(ll[i][2])):
+        
+        for x in range(dart_list.index(int(ll[i][1])), dart_list.index(int(ll[i][2])) + 1):
+            sum_2 += dart_list[x]
+
+    else:
+        for x in range(dart_list.index(int(ll[i][1])), 20):
+            sum_2 += dart_list[x]
+        for x in range(0, dart_list.index(int(ll[i][2])) + 1):
+            sum_2 += dart_list[x]
+
+    if dart_list.index(int(ll[i][2])) == dart_list.index(int(ll[i][0])):
+        sum_3 = int(ll[i][2])
+    
+    elif dart_list.index(int(ll[i][2])) < dart_list.index(int(ll[i][0])):
+
+        for x in range(dart_list.index(int(ll[i][2])), dart_list.index(int(ll[i][0])) + 1):
+            sum_3 += dart_list[x]
+
+    else:
+
+        for x in range(dart_list.index(int(ll[i][2])), 20):
+            sum_3 += dart_list[x]
+        for x in range(0, dart_list.index(int(ll[i][0])) + 1):
+
+            sum_3 += dart_list[x]
+
+    print(maximum(sum_1, sum_2, sum_3))
